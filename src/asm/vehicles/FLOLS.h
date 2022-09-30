@@ -1,7 +1,7 @@
 /****************************************************************************//*
  * Copyright (C) 2022 Marek M. Cel
  *
- * This file is part of osgAssembler.
+ * This file is part of mc-asm3d.
  *
  * osgAssembler is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,32 +16,50 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  ******************************************************************************/
-#ifndef GAPS_H
-#define GAPS_H
+#ifndef FLOLS_H
+#define FLOLS_H
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#include <QVector>
+#include <osgSim/LightPointNode>
+
+#include <asm/PAT.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 
-struct Gap
+/** Fresnel Lens Optical Landing System - FLOLS */
+class FLOLS : public PAT
 {
-    enum Side
-    {
-        Left = 0,
-        Right,
-        Both
-    };
+public:
 
-    Side side;
+    static const char tagName[];
 
-    double from;
-    double to;
+    static const float _sectorDegFrom;      ///< light point sector - foreward narrow from
+    static const float _sectorDegUnto;      ///< light point sector - foreward narrow unto
+
+    FLOLS();
+
+    FLOLS( QDomElement *xmlNode );
+
+    virtual ~FLOLS();
+
+    virtual void save( QDomDocument *doc, QDomElement *parentNode );
+
+protected:
+
+    void create();
+
+    void createIFLOLS( osgSim::LightPointNode *lightPointNode );
+
+    void createIFLOLS_Datum( osgSim::LightPointNode *lightPointNode );
+    void createIFLOLS_Ball( osgSim::LightPointNode *lightPointNode );
+    void createIFLOLS_WaveOff( osgSim::LightPointNode *lightPointNode );
+    void createIFLOLS_CutOff( osgSim::LightPointNode *lightPointNode );
+
+    virtual void saveParameters( QDomDocument *doc, QDomElement *xmlNode );
+
 };
 
-typedef QVector< Gap > Gaps;
-
 ////////////////////////////////////////////////////////////////////////////////
 
-#endif // GAPS_H
+#endif // FLOLS_H

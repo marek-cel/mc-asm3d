@@ -1,7 +1,7 @@
 /****************************************************************************//*
  * Copyright (C) 2022 Marek M. Cel
  *
- * This file is part of osgAssembler.
+ * This file is part of mc-asm3d.
  *
  * osgAssembler is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,10 +17,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  ******************************************************************************/
 
+#include <asm/fx/Smoke.h>
+
 #include <osgParticle/ModularEmitter>
 #include <osgParticle/ParticleSystemUpdater>
-
-#include <asm/Smoke.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 

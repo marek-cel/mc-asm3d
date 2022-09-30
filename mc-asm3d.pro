@@ -99,8 +99,9 @@ unix: LIBS += \
 ################################################################################
 
 HEADERS += \
+    $$PWD/src/defs.h \
     $$PWD/src/Data.h \
-    $$PWD/src/defs.h
+    $$PWD/src/Singleton.h
 
 SOURCES += \
     $$PWD/src/main.cpp

@@ -1,7 +1,7 @@
 /****************************************************************************//*
  * Copyright (C) 2022 Marek M. Cel
  *
- * This file is part of osgAssembler.
+ * This file is part of mc-asm3d.
  *
  * osgAssembler is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,17 +18,20 @@
  ******************************************************************************/
 
 #include <asm/Group.h>
+
 #include <asm/LOD.h>
 #include <asm/NodeFile.h>
 #include <asm/PAT.h>
 #include <asm/Switch.h>
 
-#include <asm/Smoke.h>
-#include <asm/Rotor.h>
-#include <asm/FLOLS.h>
-#include <asm/Runway.h>
-#include <asm/World.h>
-#include <asm/Nozzle.h>
+#include <asm/fx/Smoke.h>
+
+#include <asm/scenery/Runway.h>
+#include <asm/scenery/World.h>
+
+#include <asm/vehicles/Rotor.h>
+#include <asm/vehicles/FLOLS.h>
+#include <asm/vehicles/Nozzle.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 

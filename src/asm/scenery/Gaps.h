@@ -1,7 +1,7 @@
 /****************************************************************************//*
  * Copyright (C) 2022 Marek M. Cel
  *
- * This file is part of osgAssembler.
+ * This file is part of mc-asm3d.
  *
  * osgAssembler is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,58 +16,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  ******************************************************************************/
-#ifndef WORLD_H
-#define WORLD_H
+#ifndef GAPS_H
+#define GAPS_H
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "PAT.h"
+#include <QVector>
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/** World. */
-class World : public PAT
+struct Gap
 {
-public:
+    enum Side
+    {
+        Left = 0,
+        Right,
+        Both
+    };
 
-    static const char tagName[];
+    Side side;
 
-    World();
-
-    World( QDomElement *xmlNode );
-
-    virtual ~World();
-
-    virtual void save( QDomDocument *doc, QDomElement *parentNode );
-
-    void setLat( double lat );
-    void setLon( double lon );
-    void setAlt( double alt );
-
-    double getLat() const { return _lat; }
-    double getLon() const { return _lon; }
-    double getAlt() const { return _alt; }
-
-    bool setFile( std::string file );
-
-    std::string getFile() const { return _file; }
-
-    virtual void updatePositionAndAttitude();
-
-protected:
-
-    osg::ref_ptr<osg::Node> _fileNode;
-
-    double _lat;
-    double _lon;
-    double _alt;
-
-    std::string _file;
-
-    virtual void saveParameters( QDomDocument *doc, QDomElement *xmlNode );
-
+    double from;
+    double to;
 };
 
+typedef QVector< Gap > Gaps;
+
 ////////////////////////////////////////////////////////////////////////////////
 
-#endif // WORLD_H
+#endif // GAPS_H

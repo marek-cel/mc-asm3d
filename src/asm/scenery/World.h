@@ -1,7 +1,7 @@
 /****************************************************************************//*
  * Copyright (C) 2022 Marek M. Cel
  *
- * This file is part of osgAssembler.
+ * This file is part of mc-asm3d.
  *
  * osgAssembler is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,45 +16,53 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  ******************************************************************************/
-#ifndef FLOLS_H
-#define FLOLS_H
+#ifndef WORLD_H
+#define WORLD_H
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#include <osgSim/LightPointNode>
+#include <asm/PAT.h>
 
-#include "PAT.h"
+///////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////////////
-
-/** Fresnel Lens Optical Landing System - FLOLS */
-class FLOLS : public PAT
+/** World. */
+class World : public PAT
 {
 public:
 
     static const char tagName[];
 
-    static const float _sectorDegFrom;      ///< light point sector - foreward narrow from
-    static const float _sectorDegUnto;      ///< light point sector - foreward narrow unto
+    World();
 
-    FLOLS();
+    World( QDomElement *xmlNode );
 
-    FLOLS( QDomElement *xmlNode );
-
-    virtual ~FLOLS();
+    virtual ~World();
 
     virtual void save( QDomDocument *doc, QDomElement *parentNode );
 
+    void setLat( double lat );
+    void setLon( double lon );
+    void setAlt( double alt );
+
+    double getLat() const { return _lat; }
+    double getLon() const { return _lon; }
+    double getAlt() const { return _alt; }
+
+    bool setFile( std::string file );
+
+    std::string getFile() const { return _file; }
+
+    virtual void updatePositionAndAttitude();
+
 protected:
 
-    void create();
+    osg::ref_ptr<osg::Node> _fileNode;
 
-    void createIFLOLS( osgSim::LightPointNode *lightPointNode );
+    double _lat;
+    double _lon;
+    double _alt;
 
-    void createIFLOLS_Datum( osgSim::LightPointNode *lightPointNode );
-    void createIFLOLS_Ball( osgSim::LightPointNode *lightPointNode );
-    void createIFLOLS_WaveOff( osgSim::LightPointNode *lightPointNode );
-    void createIFLOLS_CutOff( osgSim::LightPointNode *lightPointNode );
+    std::string _file;
 
     virtual void saveParameters( QDomDocument *doc, QDomElement *xmlNode );
 
@@ -62,4 +70,4 @@ protected:
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#endif // FLOLS_H
+#endif // WORLD_H

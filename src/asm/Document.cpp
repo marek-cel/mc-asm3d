@@ -1,7 +1,7 @@
 /****************************************************************************//*
  * Copyright (C) 2022 Marek M. Cel
  *
- * This file is part of osgAssembler.
+ * This file is part of mc-asm3d.
  *
  * osgAssembler is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,13 +17,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  ******************************************************************************/
 
+#include <asm/Document.h>
+
 #include <osgDB/WriteFile>
 #include <osgUtil/Optimizer>
 
 #include <QFileInfo>
 #include <QTextStream>
-
-#include <asm/Document.h>
 
 #include <asm/Group.h>
 #include <asm/LOD.h>
@@ -31,8 +31,8 @@
 #include <asm/PAT.h>
 #include <asm/Switch.h>
 
-#include <asm/FLOLS.h>
-#include <asm/Rotor.h>
+#include <asm/vehicles/FLOLS.h>
+#include <asm/vehicles/Rotor.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 
